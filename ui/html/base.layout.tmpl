@@ -1,0 +1,53 @@
+{{define "base"}}
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<title>{{template "title" .}} - AITU-Box</title>
+<!-- Link to the CSS stylesheet and favicon -->
+<link rel='stylesheet' href='/static/css/main.css'>
+<!-- Also link to some fonts hosted by Google -->
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'>
+</head>
+<body>
+<header>
+<h1><a href='/'>AITU-News</a></h1>
+</header>
+<nav>
+    <div>
+        <a href='/'>Home</a>
+
+        {{if .IsAuthenticated}}
+            <a href='/snippet/create'>Create snippet</a>
+            <a href='/department/create'>Create department</a>
+            <a href='/student'>For Students</a>
+            <a href='/staff'>For Staff</a>
+            <a href='/applicant'>For Applicants</a>
+            <a href='/researcher'>For Researchers</a>
+            <a href='/contact'>Contact</a>
+        {{end}}
+    </div>
+    <div>
+        {{if .IsAuthenticated}}
+            <form action='/user/logout' method='POST'>
+            <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+                <button>Logout</button>
+            </form>
+        {{end}}
+        <a href='/user/signup'>Signup</a>
+        <a href='/user/login'>Login</a>
+   
+    </div>
+</nav>
+<main>
+{{with.Flash}}
+<div class ='flash'>{{.}}</div>
+{{end}}
+{{template "main" .}}
+</main>
+{{template "footer" .}}
+<!-- And include the JavaScript file -->
+<script src="/static/js/main.js" type="text/javascript"></script>
+</body>
+</html>
+{{end}}

@@ -1,0 +1,18 @@
+{{template "base" .}}
+{{define "title"}}Department: {{.dep_name}}{{end}}
+{{define "main"}}
+  {{with .Department}}
+    <div class='department'>
+      <div class='metadata'>
+        <strong>{{.DepName}}</strong>
+        <span>#{{.ID}}</span>
+      </div>
+      <div class='metadata'>
+        <label>Staff Quantity:</label> {{.StaffQuantity}}
+      </div>
+      <!-- You can add more information about the department as needed -->
+    </div>
+  {{else}}
+    <p>Department not found</p>
+  {{end}}
+{{end}}

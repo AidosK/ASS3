@@ -1,0 +1,45 @@
+{{template "base" .}}
+{{define "title"}}Home{{end}}
+{{define "main"}}
+<h2>Latest Snippets</h2>
+{{if .Snippets}}
+<table>
+<tr>
+<th>Title</th>
+<th>Created</th>
+<th>ID</th>
+</tr>
+{{range .Snippets}}
+<tr>
+<!-- Use the new semantic URL style-->
+<td><a href='/snippet/{{.ID}}'>{{.Title}}</a></td>
+<td>{{humanDate .Created}}</td>
+<td>#{{.ID}}</td>
+</tr>
+{{end}}
+</table>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}}
+
+<h2>Latest Departments</h2>
+{{if .Departments}}
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Staff Quantity</th>
+      <th>ID</th>
+    </tr>
+    {{range .Departments}}
+      <tr>
+        <!-- Use the new semantic URL style-->
+        <td><a href='/department/{{.ID}}'>{{.DepName}}</a></td>
+        <td>{{.StaffQuantity}}</td>
+        <td>#{{.ID}}</td>
+      </tr>
+    {{end}}
+  </table>
+{{else}}
+  <p>No departments available.</p>
+{{end}}
+{{end}}

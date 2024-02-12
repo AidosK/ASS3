@@ -1,0 +1,62 @@
+{{template "base" .}}
+
+{{define "title"}}Contact Us{{end}}
+
+{{define "main"}}
+  <form action='/contact' method='POST'>
+     <div>
+        <h2>Contact Information</h2>
+        <p>
+          Address: проспект Мангилик Ел, 55/11<br>
+          Бизнес-центр EXPO, блок C1<br>
+          Астана, Казахстан, 010000
+        </p>
+        <p>Phone: +7 (7172) 645-710 (Admissions Office)</p>
+        <p>Email: <a href="mailto:info@astanait.edu.kz">info@astanait.edu.kz</a></p>
+      </div>
+      <div id="google-map" style="height: 400px;"></div>
+    <div>
+      <label>Name:</label>
+      <input type='text' name='name' required>
+    </div>
+    <div>
+      <label>Email:</label>
+      <input type='email' name='email' required>
+    </div>
+    <div>
+      <label>Message:</label>
+      <textarea name='message' required></textarea>
+    </div>
+    <div>
+      <input type='submit' value='Send Message'>
+    </div>
+  </form>
+
+  <!-- Google Maps container -->
+
+  <!-- Include the Google Maps API script -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM0DSAnec7JFupKWBJd_YrjrH4YGhhplk&callback=initMap">
+  </script>
+
+  <!-- Google Maps initialization script -->
+  <script>
+    function initMap() {
+      // Astana IT University coordinates
+      const universityLocation = { lat: 51.09089660644531, lng: 71.41831970214844 };
+
+      // Create a map centered at the university
+      const map = new google.maps.Map(document.getElementById('google-map'), {
+        center: universityLocation,
+        zoom: 15 // Adjust the zoom level as needed
+      });
+
+      // Add a marker for the university
+      new google.maps.Marker({
+        position: universityLocation,
+        map: map,
+        title: 'Astana IT University'
+      });
+    }
+  </script>
+{{end}}

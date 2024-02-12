@@ -1,0 +1,27 @@
+{{template "base" .}}
+{{define "title"}}Create a New Department{{end}}
+{{define "main"}}
+  <form action='/department/create' method='POST'>
+  <input type='hidden' name='csrf_token' value='{{.CSRFToken}}'>
+    {{with .Form}}
+      <div>
+        <label>Department Name:</label>
+        {{with .Errors.Get "dep_name"}}
+          <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='Dep_Name' value='{{.Get "dep_name"}}'>
+      </div>
+
+      <div>
+        <label>Staff Quantity:</label>
+        {{with .Errors.Get "staff_quantity"}}
+          <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='StaffQuantity' value='{{.Get "staff_quantity"}}'>
+      </div>
+      <div>
+        <input type='submit' value='Publish Department'>
+      </div>
+    {{end}}
+  </form>
+{{end}}
